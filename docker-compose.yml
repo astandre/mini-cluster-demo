@@ -1,0 +1,19 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  app1:
+    build: ./apps/app1
+    container_name: "app1"
+    ports:
+      - "3000:3000"
+#  app2:
+#    build: ./apps/app2
+#    ports:
+#      - "3001:3001"
+  mongodb:
+    image: "mongo"
+    container_name: "mongodb"
+    volumes:
+      - /mongo-volume:/data/db
+    ports:
+      - "27017:27017"
+
