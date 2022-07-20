@@ -1,14 +1,21 @@
-version: "3.9"  # optional since v1.27.0
+version: "3"
 services:
   app1:
-    build: ./apps/app1
+    image: astandre/app1
+    build:
+      context: ./apps/app1
+      dockerfile: Dockerfile
     container_name: "app1"
     ports:
       - "3000:3000"
-#  app2:
-#    build: ./apps/app2
-#    ports:
-#      - "3001:3001"
+    labels:
+      kompose.service.type: NodePort
+
+
+  #  app2:
+  #    build: ./apps/app2
+  #    ports:
+  #      - "3001:3001"
   mongodb:
     image: "mongo"
     container_name: "mongodb"
@@ -16,4 +23,3 @@ services:
       - /mongo-volume:/data/db
     ports:
       - "27017:27017"
-
